@@ -28,6 +28,6 @@ public class ContactController {
 
     @PostMapping()
     public ContactEntity postContact(){
-        return ContactEntity;
+        return null;
     }
 }
