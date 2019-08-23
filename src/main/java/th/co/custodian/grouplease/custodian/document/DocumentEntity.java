@@ -2,6 +2,7 @@ package th.co.custodian.grouplease.custodian.document;
 
 import lombok.Data;
 
+import javax.naming.Reference;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.awt.*;
@@ -19,6 +20,8 @@ public class DocumentEntity {
     @Column(name = "document_name")
     private String documentName;
 
-    @Column(name = "document_image")
-    private Image documentImage;
+    @Column(name = "document_reference")
+    private String documentReference;
+
+
 }
