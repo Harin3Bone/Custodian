@@ -2,11 +2,14 @@ package th.co.custodian.grouplease.custodian.contact;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import th.co.custodian.grouplease.custodian.document.DocumentEntity;
 import th.co.custodian.grouplease.custodian.type.ContactTypeEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -45,6 +48,15 @@ public class ContactEntity {
     @JoinColumn(name = "document_id")
     private DocumentEntity documentEntity;
 
+    @CreatedDate
+    @NotNull(message = "create date cannot be null")
+    @Column(name = "contact_createDate")
+    private LocalDate contactCreateDate;
+
+    @LastModifiedDate
+    @Column(name = "contact_updateDate")
+    private LocalDate contactUpdateDate;
+
     // Specify Method
 //    public static ContactEntity create(long contactNumber,String contactFirstName,String contactLastname,
 //                                       ContactTypeEnum contactTypeEnum){
@@ -57,12 +69,13 @@ public class ContactEntity {
 //    }
 
     public static ContactEntity create(long contactNumber,String contactFirstName,String contactLastname,
-                                       ContactTypeEntity contactTypeEntity){
+                                       ContactTypeEntity contactTypeEntity,LocalDate contactCreateDate){
         var contactEntity = new ContactEntity();
         contactEntity.setContactNumber(contactNumber);
         contactEntity.setContactFirstName(contactFirstName);
         contactEntity.setContactLastname(contactLastname);
         contactEntity.setContactTypeEntity(contactTypeEntity);
+        contactEntity.setContactCreateDate(contactCreateDate);
         return contactEntity;
     }
 

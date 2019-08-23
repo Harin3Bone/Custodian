@@ -25,4 +25,9 @@ public class ContactController {
         return contactRepository.findById(contactId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+
+    @PostMapping()
+    public ContactEntity postContact(){
+        return ContactEntity;
+    }
 }

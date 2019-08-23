@@ -10,6 +10,8 @@ import th.co.custodian.grouplease.custodian.document.DocumentRepository;
 import th.co.custodian.grouplease.custodian.type.ContactTypeEntity;
 import th.co.custodian.grouplease.custodian.type.ContactTypeRepository;
 
+import java.time.LocalDate;
+
 @Component
 public class DatabaseInitializer implements CommandLineRunner {
     @Autowired
@@ -35,9 +37,9 @@ public class DatabaseInitializer implements CommandLineRunner {
 
         // Add data to repository
         contactRepository.save(ContactEntity.create(1L, "Harin", "Thananam",
-                TypeA));
+                TypeA, LocalDate.of(2019,8,1)));
         contactRepository.save(ContactEntity.create(2L, "Naruemol", "Thananam",
-                TypeA));
+                TypeA,LocalDate.now()));
 
     }
 }
