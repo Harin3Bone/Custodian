@@ -1,7 +1,10 @@
 package th.co.custodian.grouplease.custodian.contact;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
-@Service
-public class ContactService {
+public interface ContactService {
+    public List<ContactEntity> getContactAll();
+    public Optional<ContactEntity> getContactById(long contactId);
+    public void createContact(ContactEntity contactEntity);
 }

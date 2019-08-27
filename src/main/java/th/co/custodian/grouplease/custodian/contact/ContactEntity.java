@@ -57,19 +57,8 @@ public class ContactEntity {
     @Column(name = "contact_updateDate")
     private LocalDate contactUpdateDate;
 
-    // Specify Method
-//    public static ContactEntity create(long contactNumber,String contactFirstName,String contactLastname,
-//                                       ContactTypeEnum contactTypeEnum){
-//        var contactEntity = new ContactEntity();
-//        contactEntity.setContactNumber(contactNumber);
-//        contactEntity.setContactFirstName(contactFirstName);
-//        contactEntity.setContactLastname(contactLastname);
-//        contactEntity.setContactTypeEnum(contactTypeEnum);
-//        return contactEntity;
-//    }
-
-    public static ContactEntity create(long contactNumber,String contactFirstName,String contactLastname,
-                                       ContactTypeEntity contactTypeEntity,LocalDate contactCreateDate){
+    public static ContactEntity create(long contactNumber, String contactFirstName, String contactLastname,
+                                       ContactTypeEntity contactTypeEntity, LocalDate contactCreateDate){
         var contactEntity = new ContactEntity();
         contactEntity.setContactNumber(contactNumber);
         contactEntity.setContactFirstName(contactFirstName);

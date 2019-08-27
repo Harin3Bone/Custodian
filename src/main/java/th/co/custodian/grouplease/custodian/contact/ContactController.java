@@ -1,33 +1,34 @@
 package th.co.custodian.grouplease.custodian.contact;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/contact")
 public class ContactController {
+    private ContactService contactService;
 
     @Autowired
-    ContactRepository contactRepository;
+    public ContactController(ContactService theContactService){
+        contactService = theContactService;
+    }
 
     @GetMapping()
-    public List<ContactEntity> getAllContact(){
-        return contactRepository.findAll();
+    public List<ContactEntity> getContactAll(){
+        return contactService.getContactAll();
     }
 
     @GetMapping(path = "/{contactId}")
     public ContactEntity getContactById(@PathVariable long contactId){
-        return contactRepository.findById(contactId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return contactService.getContactById(contactId);
     }
 
     @PostMapping()
-    public ContactEntity postContact(){
-        return null;
+    public ContactEntity createContact(@RequestBody ContactEntity contactEntity){
+        contactEntity.setContactId(0);
+        contactService.createContact(contactEntity);
+        return contactEntity;
     }
 }
