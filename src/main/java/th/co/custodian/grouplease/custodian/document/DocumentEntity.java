@@ -12,7 +12,7 @@ import java.awt.*;
 public class DocumentEntity {
     // Specify Document Field
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "document_id")
     private long documentId;
 
