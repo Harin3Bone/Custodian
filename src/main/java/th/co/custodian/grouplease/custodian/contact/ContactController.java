@@ -28,7 +28,6 @@ public class ContactController {
 
     @PostMapping()
     public ContactEntity createContact(@RequestBody ContactEntity contactEntity){
-//        contactEntity.setContactId(0);
         contactService.createContact(contactEntity);
         return contactEntity;
     }

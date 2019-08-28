@@ -5,7 +5,6 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import th.co.custodian.grouplease.custodian.document.DocumentEntity;
-import th.co.custodian.grouplease.custodian.type.ContactTypeEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -35,7 +34,7 @@ public class ContactEntity {
     @NotNull(message = "contact number cannot be null")
     @Enumerated(EnumType.STRING)
     @Column(name = "contact_type")
-    private ContactTypeEnum contactTypeEnum;
+    private ContactType contactType;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -52,24 +51,24 @@ public class ContactEntity {
     private LocalDate contactUpdateDate;
 
     public static ContactEntity createFirst(long contactNumber, String contactFirstName, String contactLastname,
-                                            ContactTypeEnum contactTypeEnum, LocalDate contactCreateDate){
+                                            ContactType contactType, LocalDate contactCreateDate){
         var contactEntity = new ContactEntity();
         contactEntity.setContactNumber(contactNumber);
         contactEntity.setContactFirstName(contactFirstName);
         contactEntity.setContactLastname(contactLastname);
-        contactEntity.setContactTypeEnum(contactTypeEnum);
+        contactEntity.setContactType(contactType);
         contactEntity.setContactCreateDate(contactCreateDate);
         return contactEntity;
     }
 
     public static ContactEntity createLast(long contactNumber, String contactFirstName, String contactLastname,
-                                            ContactTypeEnum contactTypeEnum, LocalDate contactCreateDate,
+                                           ContactType contactType, LocalDate contactCreateDate,
                                            LocalDate contactUpdateDate){
         var contactEntity = new ContactEntity();
         contactEntity.setContactNumber(contactNumber);
         contactEntity.setContactFirstName(contactFirstName);
         contactEntity.setContactLastname(contactLastname);
-        contactEntity.setContactTypeEnum(contactTypeEnum);
+        contactEntity.setContactType(contactType);
         contactEntity.setContactCreateDate(contactCreateDate);
         contactEntity.setContactUpdateDate(contactUpdateDate);
         return contactEntity;

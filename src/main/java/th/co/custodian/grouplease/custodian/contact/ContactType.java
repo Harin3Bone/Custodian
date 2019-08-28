@@ -1,6 +1,6 @@
 package th.co.custodian.grouplease.custodian.contact;
 
-public enum ContactTypeEnum {
+public enum ContactType {
     TypeA,
     TypeB;
 }
