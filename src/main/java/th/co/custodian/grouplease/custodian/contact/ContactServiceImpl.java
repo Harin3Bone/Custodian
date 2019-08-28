@@ -25,8 +25,17 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     @Transactional
-    public Optional<ContactEntity> getContactById(long contactId) {
-        return contactRepository.findById(contactId);
+    public ContactEntity getContactById(long contactId) {
+        Optional<ContactEntity> result = contactRepository.findById(contactId);
+        ContactEntity contactEntity = null;
+        if (result.isPresent()){
+            contactEntity = result.get();
+        }
+        else {
+            throw new RuntimeException("Did not find contact by id "+contactId);
+        }
+        return contactEntity;
+
     }
 
     @Override

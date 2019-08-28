@@ -5,6 +5,6 @@ import java.util.Optional;
 
 public interface ContactService {
     public List<ContactEntity> getContactAll();
-    public Optional<ContactEntity> getContactById(long contactId);
+    public ContactEntity getContactById(long contactId);
     public void createContact(ContactEntity contactEntity);
 }

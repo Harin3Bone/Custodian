@@ -32,16 +32,10 @@ public class ContactEntity {
     @Column(name = "contact_lastname")
     private String contactLastname;
 
-//    @NotNull(message = "contact number cannot be null")
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "contact_type")
-//    private ContactTypeEnum contactTypeEnum;
-
-    @JsonIgnore
-    @NotNull(message = "contact type cannot be null")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contact_type")
-    private ContactTypeEntity contactTypeEntity;
+    @NotNull(message = "contact number cannot be null")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "contact_type")
+    private ContactTypeEnum contactTypeEnum;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -57,15 +51,26 @@ public class ContactEntity {
     @Column(name = "contact_updateDate")
     private LocalDate contactUpdateDate;
 
-    public static ContactEntity create(long contactNumber, String contactFirstName, String contactLastname,
-                                       ContactTypeEntity contactTypeEntity, LocalDate contactCreateDate){
+    public static ContactEntity createFirst(long contactNumber, String contactFirstName, String contactLastname,
+                                            ContactTypeEnum contactTypeEnum, LocalDate contactCreateDate){
         var contactEntity = new ContactEntity();
         contactEntity.setContactNumber(contactNumber);
         contactEntity.setContactFirstName(contactFirstName);
         contactEntity.setContactLastname(contactLastname);
-        contactEntity.setContactTypeEntity(contactTypeEntity);
+        contactEntity.setContactTypeEnum(contactTypeEnum);
         contactEntity.setContactCreateDate(contactCreateDate);
         return contactEntity;
     }
 
-}
+    public static ContactEntity createLast(long contactNumber, String contactFirstName, String contactLastname,
+                                            ContactTypeEnum contactTypeEnum, LocalDate contactCreateDate,
+                                           LocalDate contactUpdateDate){
+        var contactEntity = new ContactEntity();
+        contactEntity.setContactNumber(contactNumber);
+        contactEntity.setContactFirstName(contactFirstName);
+        contactEntity.setContactLastname(contactLastname);
+        contactEntity.setContactTypeEnum(contactTypeEnum);
+        contactEntity.setContactCreateDate(contactCreateDate);
+        contactEntity.setContactUpdateDate(contactUpdateDate);
+        return contactEntity;
+    }}
