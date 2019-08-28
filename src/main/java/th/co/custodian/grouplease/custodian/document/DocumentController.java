@@ -10,6 +10,11 @@ import java.util.List;
 public class DocumentController {
     private DocumentService documentService;
 
+    @Autowired
+    public DocumentController(DocumentService theDocumentService){
+        documentService = theDocumentService;
+    }
+
     @GetMapping()
     public List<DocumentEntity> getAllDocument(){
         return documentService.getDocumentAll();

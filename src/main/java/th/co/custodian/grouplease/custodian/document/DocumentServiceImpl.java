@@ -3,6 +3,7 @@ package th.co.custodian.grouplease.custodian.document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import th.co.custodian.grouplease.custodian.contact.ContactRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class DocumentServiceImpl implements DocumentService {
     private DocumentRepository documentRepository;
 
     @Autowired
-    private DocumentServiceImpl(DocumentRepository theDocumentRepository){
+    public DocumentServiceImpl(DocumentRepository theDocumentRepository){
         documentRepository = theDocumentRepository;
     }
 
@@ -27,7 +28,7 @@ public class DocumentServiceImpl implements DocumentService {
     @Transactional
     public DocumentEntity getDocumentById(long documentId) {
         Optional<DocumentEntity> result = documentRepository.findById(documentId);
-        DocumentEntity documentEntity;
+        DocumentEntity documentEntity = null;
         if (result.isPresent()){
             documentEntity = result.get();
         }
